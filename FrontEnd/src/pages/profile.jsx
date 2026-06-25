@@ -24,7 +24,6 @@ export default function ProfilePage({
   const { userInfo } = useContext(UserDataContext);
 
   const [showPassword, setShowPassword] = useState(false);
-  // 1. Changed initial state to null so we can check if data has loaded
   const [profile, setProfile] = useState(null); 
   const [no_of_posts, setNoOfPosts] = useState(0);
   const [no_of_created_communities, setNoOfCreatedCommunities] = useState(0);
@@ -73,7 +72,6 @@ export default function ProfilePage({
     loadContent();
   }, [navigate,isOwner,notUser]);
 
-  // 3. Show a loader or fallback until the backend database responds
   if (isLoading || !profile) {
     return (
       <div className="flex justify-center items-center h-64 text-slate-500 font-medium">
@@ -84,22 +82,19 @@ export default function ProfilePage({
 
   return (
     <div className="max-w-3xl mx-auto space-y-5">
-      {/* ===================================================== */}
-      {/* PROFILE CARD */}
-      {/* ===================================================== */}
       <section className="bg-white border border-slate-100 rounded-3xl shadow-sm overflow-hidden">
         <div className="px-5 sm:px-7 pb-6 mt-20">
-          {/* TOP SECTION */}
+          
           <div className="-mt-14 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
             <div className="flex flex-col sm:flex-row sm:items-end gap-5">
-              {/* PROFILE IMAGE */}
+              
               <img
                 src={profile.profile_photo}
                 alt={profile.username}
                 className="w-28 h-28 rounded-full border-4 border-white object-cover shadow-lg bg-white"
               />
 
-              {/* USER INFO */}
+              
               <div className="pb-2">
                 <h1 className="text-3xl font-black text-slate-900 tracking-tight">
                   {profile.username}
@@ -114,7 +109,7 @@ export default function ProfilePage({
               </div>
             </div>
 
-            {/* EDIT BUTTON */}
+            
             {isOwner && (
               <button
                 onClick={() => setOpenEditModal(true)}
@@ -126,7 +121,7 @@ export default function ProfilePage({
             )}
           </div>
 
-          {/* BIO */}
+          
           <div className="mt-7">
             <h3 className="text-xs uppercase tracking-wider text-slate-400 font-bold mb-3">
               Bio
@@ -136,7 +131,7 @@ export default function ProfilePage({
             </p>
           </div>
 
-          {/* STATS */}
+          
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-7">
             <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4">
               <p className="text-xs text-slate-400 font-semibold uppercase">Posts</p>
@@ -156,9 +151,6 @@ export default function ProfilePage({
         </div>
       </section>
 
-      {/* ===================================================== */}
-      {/* POSTS SECTION */}
-      {/* ===================================================== */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
@@ -171,10 +163,6 @@ export default function ProfilePage({
         <Profilepost />
       </section>
 
-      {/* ===================================================== */}
-      {/* EDIT PROFILE MODAL */}
-      {/* ===================================================== */}
-      {/* 4. Conditional short-circuit rendering ensures this only initializes when profile data is ready */}
       {openEditModal && (
         <EditProfileModal
           isOpen={openEditModal}

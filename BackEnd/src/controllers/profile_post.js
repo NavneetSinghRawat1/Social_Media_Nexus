@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
         req.user_sending_data = decoded;
         const userId = req.user_sending_data.id;
 
-        // how many posts per request
+       
         const limit = parseInt(req.query.limit) || 15;
 
         // cursor values
@@ -43,7 +43,6 @@ router.get("/", async (req, res) => {
 
         const values = [userId];
 
-        // cursor pagination
         if (cursorCreatedAt && cursorPostId) {
 
             query += `
@@ -96,9 +95,6 @@ router.get("/", async (req, res) => {
         res.json({
             posts,
             nextCursor,
-
-            // if posts returned are exactly limit,
-            // maybe more posts exist
             hasMore: posts.length === limit,
         });
 

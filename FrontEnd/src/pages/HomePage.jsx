@@ -40,10 +40,10 @@ export default function HomePage() {
         const loadContent = async () => {
             try {
     //             setLoading(true);
-    //             // 1. Check if the token exists in localStorage
+    //             
     //             // const token = Cookies.get('token');
 
-    //             // 2. Fetch data based on token presence
+    //             
                 
                 const data = await postService.get_post();
                 // {console.log("data -> ",data);}
@@ -80,17 +80,17 @@ export default function HomePage() {
   `;
     
     return (
-        // Fixed viewport container prevents general screen page breaking
+       
         <div className="h-screen w-screen bg-white text-slate-900 font-sans flex flex-col overflow-hidden">
-            {/* Static Navbar */}
+            
             {/* {console.log("Rendering HomePage with user info:", userInfo, "Logged in:", isLoggedIn)} */}
             <Navbar/>
 
-            {/* Main Framework Grid: Calc screens height dynamically minus the header offset */}
+            
             <div className="flex-1 w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 h-[calc(100vh-61px)] overflow-hidden">
-                {/* Column 1: Left Nav Column - Independent Scroll */}
+                
                 <aside className="hidden md:flex md:col-span-1 lg:col-span-2 border-r border-slate-100 bg-white h-full flex-col overflow-y-auto custom-scrollbar py-4 no-scrollbar">
-                    {/* Main Feeds Group */}
+                   
                     <div className="space-y-0.5">
                         <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider px-4 mb-2">
                             Feeds
@@ -118,7 +118,7 @@ export default function HomePage() {
                         </button>
                     </div>
 
-                    {/* User Operations Group (Simulating heavy link list overflow items) */}
+                    
                     <div className="space-y-0.5 mt-6">
                         <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider px-4 mb-2">
                             My Account
@@ -148,7 +148,6 @@ export default function HomePage() {
                         </button> */}
                     </div>
 
-                    {/* Preferences Group */}
                     {/* <div className="space-y-0.5 mt-6 px-2">
                         <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider px-2 mb-2">
                             Preferences
@@ -167,13 +166,11 @@ export default function HomePage() {
                         </button>
                     </div> */}
 
-                    {/* Footer block pinned to base track */}
                     <div className="mt-auto pt-8 px-4 text-xs text-slate-400 font-medium">
                         &copy; 2026 xyz network
                     </div>
                 </aside>
 
-                {/* Column 2: Center Main Content Stream - Independent Scroll */}
                 <main className="col-span-1 md:col-span-3 lg:col-span-7 bg-slate-50/40 h-full overflow-y-auto p-4 sm:p-6 no-scrollbar">
                     <div className="max-w-3xl mx-auto space-y-5">
                         {(activeFeed === "home") ?(
@@ -203,7 +200,6 @@ export default function HomePage() {
                     </div>
                 </main>
 
-                {/* Column 3: Right Widget Panel - Independent Scroll */}
                 <aside className="hidden lg:block lg:col-span-3 bg-white border-l border-slate-100 h-full overflow-y-auto p-4 no-scrollbar">
                     <CommunityTable  
                         setActiveFeed={setActiveFeed}
@@ -219,7 +215,6 @@ export default function HomePage() {
                         />
                     ) : (null)}
 
-                    {/* Extra placeholder widgets can sit below the table and scroll cleanly */}
                     {/* <div className="mt-4 bg-slate-50 border border-slate-100 p-4 rounded-2xl text-xs text-slate-500 font-medium">
             <p className="font-bold text-slate-700 mb-1">Trending Rules</p>
             Keep conversations constructive and clear. Be mindful of links shared inside custom community feeds.

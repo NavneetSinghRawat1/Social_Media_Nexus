@@ -27,11 +27,9 @@ const result = await ImageKitClient.files.upload({
 async function upload(files,name) {
     const uploadTasks = Array.from(files).map(async (file) => {
         let fileToUpload;
-        // Check if the input is a string that starts with http (a URL)
         if (typeof file === 'string' && file.startsWith('http')) {
             fileToUpload = file;
         } else if (file && file.buffer) {
-            // Fallback to Base64 if it's a file object from your computer
             fileToUpload = file.buffer.toString('base64');
         } else {
             throw new Error("Invalid file input type");

@@ -46,8 +46,6 @@ export default function MediaCarousel({ addons }) {
     }
   };
 
-// checkFileType("https://ik.imagekit.io/trh66bhk8/project/picture/boss1779805443620_CXG7UUuVJ")
-//   .then(console.log);
 
   const nextSlide = (e) => {
     e.stopPropagation();
@@ -156,7 +154,6 @@ export default function MediaCarousel({ addons }) {
   return (
     <div className="mt-4 rounded-xl overflow-hidden border border-slate-100 bg-slate-950 aspect-video relative group select-none">
       
-      {/* Sliding Track Wrapper Container */}
       <div 
         className="w-full h-full flex transition-transform duration-500 ease-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -184,7 +181,6 @@ export default function MediaCarousel({ addons }) {
         ))}
       </div>
 
-      {/* Navigation Controls */}
       <button 
         onClick={prevSlide}
         className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 hover:bg-black/70 transition-all z-10"
@@ -198,7 +194,6 @@ export default function MediaCarousel({ addons }) {
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* Indicators */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
         {addons.map((_, idx) => (
           <button

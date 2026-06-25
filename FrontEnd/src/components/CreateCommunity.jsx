@@ -12,9 +12,6 @@ export default function CreateCommunityModal({
     onClose,
 }) {
 
-    // =========================================
-    // STATES
-    // =========================================
     const navigate = useNavigate();
     const [name, setName] = useState("");
     const [description, setDescription] =
@@ -31,9 +28,6 @@ export default function CreateCommunityModal({
 
     if (!isOpen) return null;
 
-    // =========================================
-    // HANDLE IMAGE
-    // =========================================
 
     const handleImageChange = (e) => {
 
@@ -48,9 +42,6 @@ export default function CreateCommunityModal({
         );
     };
 
-    // =========================================
-    // SUBMIT
-    // =========================================
 
     const handleSubmit = async (e) => {
 
@@ -75,25 +66,14 @@ export default function CreateCommunityModal({
 
             setLoading(true);
 
-            // =====================================
-            // TAG ARRAY
-            // =====================================
 
             // const tagArray = tags
             //     .split(",")
             //     .map(tag => tag.trim())
             //     .filter(tag => tag.length > 0);
 
-            // =====================================
-            // IMAGEKIT UPLOAD HERE
-            // =====================================
 
-            // upload communityPic
-            // get image url
 
-            // =====================================
-            // FINAL DATA
-            // =====================================
 
             // const communityData = {
 
@@ -117,9 +97,6 @@ export default function CreateCommunityModal({
             // await axios.post(...)
             const data=await postService.create_community(communityData);
             console.log(data);
-            // =====================================
-            // CLEAR FORM
-            // =====================================
 
             setName("");
             setDescription("");
@@ -146,7 +123,6 @@ export default function CreateCommunityModal({
             await postService.chk_token();
             // const user = await postService.user_info();
             
-            // State updates are batched together
             // setProfile(user.user);
             // setNoOfPosts(user.no_of_posts);
             // setNoOfCreatedCommunities(user.no_of_created_comm);
@@ -164,10 +140,10 @@ export default function CreateCommunityModal({
 
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
 
-            {/* MODAL */}
+            
             <div className="w-full max-w-sm bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
 
-                {/* HEADER */}
+                
                 <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
 
                     <div>
@@ -193,7 +169,7 @@ export default function CreateCommunityModal({
                     </button>
                 </div>
 
-                {/* FORM */}
+               
                 <form
                     onSubmit={handleSubmit}
                     className="
@@ -203,7 +179,7 @@ export default function CreateCommunityModal({
                     "
                 >
 
-                    {/* COMMUNITY IMAGE */}
+                    
                     <div className="flex flex-col items-center">
 
                         <div className="relative">
@@ -250,7 +226,7 @@ export default function CreateCommunityModal({
                         </p>
                     </div>
 
-                    {/* NAME */}
+                    
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -277,7 +253,7 @@ export default function CreateCommunityModal({
                         />
                     </div>
 
-                    {/* DESCRIPTION */}
+                    
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -305,7 +281,7 @@ export default function CreateCommunityModal({
                         />
                     </div>
 
-                    {/* TAGS */}
+                    
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -336,7 +312,7 @@ export default function CreateCommunityModal({
                         </p>
                     </div>
 
-                    {/* FOOTER */}
+                    
                     <div className="flex justify-end gap-3 pt-2">
 
                         <button

@@ -22,7 +22,7 @@ export default function SignupPage() {
     await userService.signup(userData)
       .then(response => {
         // console.log('Signup response:', response);
-        // Handle successful signup
+        
         setUsername('');
         setPassword('');
         setConfirmPassword('');
@@ -32,10 +32,10 @@ export default function SignupPage() {
       })
       .catch(error => {
         console.error('Signup error:', error);
-        // Handle signup error
+       
       });
 
-    // Handle signup submission logic here
+    
     // console.log('Signing up with:', { username, password });
   };
 

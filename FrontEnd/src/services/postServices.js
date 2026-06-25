@@ -2,7 +2,7 @@
 import axios from "axios";
 import api from "../api";
 export const postService = {
-  // POST Request (User Login)
+  
   get_post: () => {
     // console.log("Fetching posts from backend...");
     return api.get('/home');

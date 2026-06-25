@@ -59,9 +59,6 @@ export default function EditProfileModal({
 
             setLoading(true);
 
-            // =========================
-            // IMAGEKIT UPLOAD HERE
-            // =========================
 
             // let uploadedImageUrl = user.picture;
 
@@ -103,7 +100,6 @@ export default function EditProfileModal({
 
             // console.log("tttttt -> ",updatedData);
 
-            // await axios.put("/api/profile/update", updatedData)
             const data=await postService.user_update(updatedData);
             console.log(data);
             onClose();
@@ -123,11 +119,11 @@ export default function EditProfileModal({
 
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
 
-            {/* Modal */}
+            
             {/* <div className="w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden"> */}
             {/* <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden"> */}
             <div className="w-full max-w-sm bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-                {/* Header */}
+               
                 {/* <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100"> */}
                 <div className="flex items-center justify-between px-3 py-2.5 border-b border-slate-100">
                 
@@ -154,14 +150,14 @@ export default function EditProfileModal({
                     </button>
                 </div>
 
-                {/* Body */}
+                
                 <form
                     onSubmit={handleSubmit}
                     // className="p-6 space-y-6"
                     className="p-4 space-y-4"
                 >
 
-                    {/* Profile Picture */}
+                    
                     <div className="flex flex-col items-center">
 
                         <div className="relative">
@@ -207,7 +203,6 @@ export default function EditProfileModal({
                         </p>
                     </div>
 
-                    {/* Username */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -230,7 +225,6 @@ export default function EditProfileModal({
                         />
                     </div>
 
-                    {/* Bio */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -258,7 +252,6 @@ export default function EditProfileModal({
                         />
                     </div>
 
-                    {/* Password */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -285,7 +278,6 @@ export default function EditProfileModal({
                         />
                     </div>
 
-                    {/* Footer */}
                     <div className="flex justify-end gap-3 pt-2">
 
                         <button

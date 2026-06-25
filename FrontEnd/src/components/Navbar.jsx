@@ -17,7 +17,6 @@ export default function Navbar() {
   };
 
     
-    // 1. This is your existing logout logic
     const handleLogout = async () => {
       // Clear tokens, reset auth state, or redirect the user here
       // console.log("Logged out successfully!");
@@ -28,22 +27,19 @@ export default function Navbar() {
         setIsLoggedIn(false);
         setUserInfo('');
         navigate("/");
-          // Handle successful logout if needed
         })
         .catch(error => {
           console.error('Logout error:', error);
-          // Handle logout error if needed
         });
     };
 
-    // 2. This is the confirmation interceptor
     const handleConfirmLogout = () => {
       const userConfirmed = window.confirm("Do you want to logout?");
       
       if (userConfirmed) {
-        handleLogout(); // Only runs if they clicked "OK"
+        handleLogout(); 
       }
-      // If they clicked "Cancel", nothing happens and they stay logged in
+      
   };
   // const handleinput=(e)=>{
   //   e.preventDefault();
@@ -76,7 +72,6 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 px-4 lg:px-8 py-3">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
-        {/* Brand Logo */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <div className="bg-indigo-600 p-2 rounded-xl text-white shadow-sm shadow-indigo-200">
             <Compass className="w-5 h-5" />
@@ -84,7 +79,6 @@ export default function Navbar() {
           <span className="text-xl font-black tracking-tight text-slate-900">Nexus</span>
         </div>
 
-        {/* Search Bar */}
 
         {/* <div className="flex-1 max-w-md mx-4 relative hidden sm:block">
         <form 
@@ -102,7 +96,6 @@ export default function Navbar() {
         </form>
         </div> */}
 
-        {/* Auth Conditionals */}
         <div className="flex items-center gap-3">
           {isLoggedIn ? (
             // console.log(user),

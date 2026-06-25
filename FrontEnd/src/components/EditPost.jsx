@@ -14,9 +14,6 @@ export default function UpdatePostModal({
     post,
 }) {
     console.log("i am called");
-    // =========================================
-    // STATES
-    // =========================================
 
     const [title, setTitle] = useState(
         post?.title || ""
@@ -30,14 +27,11 @@ export default function UpdatePostModal({
         post?.tags?.join(", ") || ""
     );
 
-    // existing uploaded urls
     const [existingAddons, setExistingAddons] =
         useState(post?.addons || []);
 
-    // new files
     const [newFiles, setNewFiles] = useState([]);
 
-    // preview of new files
     const [previewFiles, setPreviewFiles] =
         useState([]);
 
@@ -48,18 +42,12 @@ export default function UpdatePostModal({
 
     if (!isOpen || !post) return null;
 
-    // =========================================
-    // CHECK IMAGE OR VIDEO
-    // =========================================
 
     const isVideo = (url) => {
 
         return /\.(mp4|webm|ogg|mov)$/i.test(url);
     };
 
-    // =========================================
-    // HANDLE FILE CHANGE
-    // =========================================
 
     const handleFileChange = (e) => {
 
@@ -91,9 +79,6 @@ export default function UpdatePostModal({
         ]);
     };
 
-    // =========================================
-    // REMOVE EXISTING ADDON
-    // =========================================
 
     const removeExistingAddon = (index) => {
 
@@ -102,9 +87,6 @@ export default function UpdatePostModal({
         );
     };
 
-    // =========================================
-    // REMOVE NEW FILE
-    // =========================================
 
     const removeNewFile = (index) => {
 
@@ -116,10 +98,6 @@ export default function UpdatePostModal({
             prev.filter((_, i) => i !== index)
         );
     };
-
-    // =========================================
-    // UPDATE POST
-    // =========================================
 
     const handleSubmit = async (e) => {
 
@@ -139,25 +117,13 @@ export default function UpdatePostModal({
 
             setLoading(true);
 
-            // =====================================
-            // TAG ARRAY
-            // =====================================
 
             const tagArray = tags
                 .split(",")
                 .map(tag => tag.trim())
                 .filter(tag => tag.length > 0);
 
-            // =====================================
-            // IMAGEKIT UPLOAD HERE
-            // =====================================
 
-            // upload newFiles
-            // get uploaded urls
-
-            // =====================================
-            // FINAL PAYLOAD
-            // =====================================
 
             const updatedPost = {
 
@@ -174,7 +140,6 @@ export default function UpdatePostModal({
 
             console.log(updatedPost);
 
-            // await axios.put(...)
 
             onClose();
 
@@ -188,9 +153,6 @@ export default function UpdatePostModal({
         }
     };
 
-    // =========================================
-    // DELETE POST
-    // =========================================
 
     const handleDeletePost = async () => {
 
@@ -200,7 +162,6 @@ export default function UpdatePostModal({
 
             console.log("Delete Post:", post.post_id);
 
-            // await axios.delete(...)
 
             onClose();
 
@@ -218,10 +179,8 @@ export default function UpdatePostModal({
 
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
 
-            {/* MODAL */}
             <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
 
-                {/* HEADER */}
                 <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
 
                     <div>
@@ -247,13 +206,11 @@ export default function UpdatePostModal({
                     </button>
                 </div>
 
-                {/* FORM */}
                 <form
                     onSubmit={handleSubmit}
                     className="p-4 space-y-4 max-h-[85vh] overflow-y-auto"
                 >
 
-                    {/* TITLE */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -279,7 +236,6 @@ export default function UpdatePostModal({
                         />
                     </div>
 
-                    {/* CONTENT */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -306,7 +262,6 @@ export default function UpdatePostModal({
                         />
                     </div>
 
-                    {/* TAGS */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -333,7 +288,6 @@ export default function UpdatePostModal({
                         />
                     </div>
 
-                    {/* ADD FILES */}
                     <div>
 
                         <div className="flex items-center justify-between mb-2">
@@ -382,7 +336,6 @@ export default function UpdatePostModal({
                         </label>
                     </div>
 
-                    {/* EXISTING ADDONS */}
                     {
                         existingAddons.length > 0 && (
 
@@ -437,7 +390,6 @@ export default function UpdatePostModal({
                         )
                     }
 
-                    {/* NEW FILE PREVIEWS */}
                     {
                         previewFiles.length > 0 && (
 
@@ -491,11 +443,8 @@ export default function UpdatePostModal({
                             </div>
                         )
                     }
-
-                    {/* FOOTER */}
                     <div className="flex flex-col gap-3 pt-2">
 
-                        {/* DELETE */}
                         <button
                             type="button"
                             onClick={() =>
@@ -516,7 +465,6 @@ export default function UpdatePostModal({
                             Delete Post
                         </button>
 
-                        {/* ACTIONS */}
                         <div className="flex justify-end gap-3">
 
                             <button
@@ -563,7 +511,6 @@ export default function UpdatePostModal({
                 </form>
             </div>
 
-            {/* DELETE CONFIRM */}
             {
                 showDeleteConfirm && (
 

@@ -63,15 +63,11 @@ export default function PostCommentsModal({
     }
   }
 
-  // =========================================
-  // FETCH COMMENTS
-  // =========================================
 
   const fetchComments = async () => {
     try {
       setLoading(true);
 
-      // Example API call
       const data = await postService.get_comments(
         post.post_id
       );
@@ -94,9 +90,6 @@ export default function PostCommentsModal({
     }
   }, [isOpen]);
 
-  // =========================================
-  // ADD COMMENT
-  // =========================================
 
   if (!isOpen) return null;
   const handleCommentSubmit = async () => {
@@ -114,7 +107,6 @@ export default function PostCommentsModal({
 
       console.log(data);
 
-      // Optimistic update
       setComments((prev) => [
         data[0],
         ...prev,
@@ -130,7 +122,6 @@ export default function PostCommentsModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-3">
       <div className="bg-white w-full max-w-3xl h-[90vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col">
 
-        {/* HEADER */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
           <h2 className="text-lg font-bold text-slate-800">
             Post & Comments
@@ -144,13 +135,10 @@ export default function PostCommentsModal({
           </button>
         </div>
 
-        {/* BODY */}
         <div className="flex-1 overflow-y-auto">
 
-          {/* COMPLETE POST */}
           <div className="p-5 border-b border-slate-100">
 
-            {/* USER */}
             <div className="flex items-center gap-3">
               <img
                 src={post.profile_photo}
@@ -169,7 +157,6 @@ export default function PostCommentsModal({
               </div>
             </div>
 
-            {/* CONTENT */}
             <div className="mt-4">
               <h2 className="text-xl font-bold text-slate-900">
                 {post.title}
@@ -180,7 +167,6 @@ export default function PostCommentsModal({
               </p>
             </div>
 
-            {/* TAGS */}
             <div className="mt-4 flex flex-wrap gap-2">
               {post.tags?.map((tag, index) => (
                 <span
@@ -192,12 +178,10 @@ export default function PostCommentsModal({
               ))}
             </div>
 
-            {/* MEDIA */}
             <div className="mt-4">
               <MediaCarousel addons={post.addons} />
             </div>
 
-            {/* STATS */}
             <div className="flex items-center gap-5 mt-5 text-sm text-slate-500">
               <div className="flex items-center gap-1">
                 {/* <Heart className="w-4 h-4" />
@@ -219,7 +203,6 @@ export default function PostCommentsModal({
             </div>
           </div>
 
-          {/* COMMENTS */}
           <div className="p-5 space-y-5">
 
             <h3 className="font-bold text-slate-800 text-lg">
@@ -271,7 +254,6 @@ export default function PostCommentsModal({
           </div>
         </div>
 
-        {/* COMMENT INPUT */}
         <div className="border-t border-slate-100 p-4">
           <div className="flex items-center gap-3">
 

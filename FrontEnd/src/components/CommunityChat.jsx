@@ -17,7 +17,6 @@ export default function CommunityChat({ community }) {
 
     const bottomRef = useRef(null);
 
-    // Load messages + join status
     useEffect(() => {
 
         const loadData = async () => {
@@ -37,7 +36,6 @@ export default function CommunityChat({ community }) {
                 else{
                     setMessages(messageData);
                 }
-                // Check joined
                 // console.log("community -> ",community.community_id);
                 const joinedData =
                     await postService.isJoined(
@@ -60,7 +58,6 @@ export default function CommunityChat({ community }) {
 
     }, [community]);
 
-    // Auto refresh every 5 sec
     useEffect(() => {
 
         const interval = setInterval(async () => {
@@ -87,7 +84,6 @@ export default function CommunityChat({ community }) {
 
     }, [community]);
 
-    // Auto scroll
     useEffect(() => {
 
         bottomRef.current?.scrollIntoView({
@@ -96,7 +92,6 @@ export default function CommunityChat({ community }) {
 
     }, [messages]);
 
-    // Send message
     const handleSend = async () => {
 
         if (!messageInput.trim()) return;
@@ -110,7 +105,6 @@ export default function CommunityChat({ community }) {
 
             setMessageInput("");
 
-            // Reload latest messages
             const data =
                 await postService.getMessages(
                     community.community_id
@@ -124,7 +118,6 @@ export default function CommunityChat({ community }) {
         }
     };
 
-    // Join community
     const handleJoin = async () => {
 
         try {
@@ -141,7 +134,6 @@ export default function CommunityChat({ community }) {
         }
     };
 
-    // Leave community
     const handleLeave = async () => {
 
         try {
@@ -169,7 +161,6 @@ export default function CommunityChat({ community }) {
     return (
         <div className="flex flex-col h-[85vh] bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
 
-            {/* HEADER */}
             <div className="flex items-center justify-between p-4 border-b border-slate-100 bg-white">
 
                 <div className="flex items-center gap-3">
@@ -200,7 +191,6 @@ export default function CommunityChat({ community }) {
 
                 </div>
 
-                {/* JOIN / LEAVE BUTTON */}
                 {
                     isJoined ? (
                         <button
@@ -221,7 +211,6 @@ export default function CommunityChat({ community }) {
 
             </div>
 
-            {/* MESSAGES */}
             <div className="flex-1 overflow-y-auto p-4 bg-slate-50 space-y-3 no-scrollbar">
 
                 {
@@ -268,7 +257,6 @@ export default function CommunityChat({ community }) {
                                         `}
                                     >
 
-                                        {/* USERNAME */}
                                         <div
                                             className={`text-xs font-bold mb-1 ${isMine
                                                     ? "text-indigo-100"
@@ -278,12 +266,10 @@ export default function CommunityChat({ community }) {
                                             {msg.username}
                                         </div>
 
-                                        {/* MESSAGE */}
                                         <div className="text-sm break-words">
                                             {msg.message}
                                         </div>
 
-                                        {/* TIME */}
                                         <div
                                             className={`text-[10px] mt-1 text-right ${isMine
                                                     ? "text-indigo-200"
@@ -315,7 +301,6 @@ export default function CommunityChat({ community }) {
 
             </div>
 
-            {/* INPUT */}
             <div className="border-t border-slate-100 bg-white p-3">
 
                 <div className="flex items-center gap-2">

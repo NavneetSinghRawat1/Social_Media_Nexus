@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
             req.user_sending_data = decoded;
             userId = decoded?.id || null;
         } catch (err) {
-            userId = null; // guest user
+            userId = null; 
         }
         let query = `
             SELECT
@@ -79,7 +79,7 @@ router.get("/", async (req, res) => {
 
         const scorePlaceholder = values.length + 1;
         const postPlaceholder = values.length + 2;
-        // Cursor Pagination
+       
         if (cursorScore !== null && cursorPostId !== null) {
 
             query += `

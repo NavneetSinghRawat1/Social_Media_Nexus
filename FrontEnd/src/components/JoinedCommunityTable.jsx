@@ -23,7 +23,6 @@ export default function JoinedCommunityTable({setActiveFeed,
       setActiveFeed("community_chat");
   };
   useEffect(() => {
-    // Simulate fetching data from an API
     const loadContent = async () => {
             try {
                 const data = await fetchjoinedcommmtable();

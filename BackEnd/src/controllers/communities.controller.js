@@ -202,7 +202,7 @@ async function createCommunities(req,res) {
         `;
 
         try {
-            // Passes the array directly to the query, letting PostgreSQL unroll it
+            
             await Pool.query(user_update_interest_query, [req.user_sending_data.id, tagIDS_user_interest.rows.map(row => row.tag_id), process.env.CREATED_COMMUNITY_INTERACTION_SCORE]);
             const join=await Pool.query("Update communities set members=(array_append(members,$1)) where name=$2 AND NOT ($1 = ANY(members)) returning community_id",[creator_name,name]);
                 // console.log(join);
@@ -274,9 +274,9 @@ async function updateCommunities(req,res) {
             queryParams.push(description);
         }
 
-        // 2. Handle Image Upload
+       
         if (comm_pic) {
-            // Your upload function logic
+            
             const uploadResult = await uploadFile_comm(comm_pic.buffer.toString('base64'), name);
             updateFields.push(`comm_pic = $${count++}`);
             queryParams.push(uploadResult.thumbnailUrl);
@@ -289,15 +289,15 @@ async function updateCommunities(req,res) {
             queryParams.push(uploadResult.fileId);
         }
 
-        // 3. Handle Tags (Array of UUIDs)
+        
         
 
-        // If no data was provided at all
+        
         if (updateFields.length === 0) {
             return res.status(400).json({ message: "No fields provided for update." });
         }
 
-        // 4. Finalize and execute the query
+        
         queryParams.push(name);
         const command = `UPDATE communities SET ${updateFields.join(', ')} WHERE name = $${count} RETURNING *`;
 

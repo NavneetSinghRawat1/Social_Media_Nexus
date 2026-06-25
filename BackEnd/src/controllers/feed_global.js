@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("../db/db"); // your pg connection
+const pool = require("../db/db"); 
 // const authMiddleware = require("../middleware/auth.middleware");
 const jwt = require("jsonwebtoken");
 router.get("/", async (req, res) => {
@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
             userId = decoded?.id || null;
 
         } catch (err) {
-            userId = null; // guest user
+            userId = null; 
         }
 
         let query = `

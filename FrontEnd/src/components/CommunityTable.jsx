@@ -23,7 +23,6 @@ export default function CommunityTable({setActiveFeed,
       setActiveFeed("community_chat");
   };
   useEffect(() => {
-    // Simulate fetching data from an API
     const loadContent = async () => {
             try {
                 const data = await fetchcommmtable();
@@ -63,7 +62,7 @@ export default function CommunityTable({setActiveFeed,
                 <td className="py-2.5 pr-2">
                   <div className="flex items-center gap-2.5">
                     <div className="w-7 h-7 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-lg text-white font-bold text-xs flex items-center justify-center uppercase shadow-sm">
-                      {/* {community.name.substring(2, 4)} */}
+                      
                       <img 
                         src={community.comm_pic} 
                         alt={community.name.substring(2, 4)} 

@@ -25,10 +25,8 @@ export default function PostCard({ post, isowner }) {
     const inputDate = new Date(dateString);
     const now = new Date();
 
-    // Calculate the difference in seconds
     const deltaSeconds = Math.round((inputDate - now) / 1000);
 
-    // Array of time units and their values in seconds
     const units = [
       { name: 'year', seconds: 31536000 },
       { name: 'month', seconds: 2592000 },
@@ -39,12 +37,10 @@ export default function PostCard({ post, isowner }) {
       { name: 'second', seconds: 1 }
     ];
 
-    // Find the appropriate unit to format with
     for (const unit of units) {
       if (Math.abs(deltaSeconds) >= unit.seconds || unit.name === 'second') {
         const value = Math.round(deltaSeconds / unit.seconds);
 
-        // Initialize the built-in RelativeTimeFormat API (defaults to browser language)
         const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
         return rtf.format(value, unit.name);
       }
@@ -52,9 +48,6 @@ export default function PostCard({ post, isowner }) {
   }
   const handleLike = async () => {
 
-    // =====================================
-    // OPTIMISTIC UI UPDATE
-    // =====================================
 
     const previousLiked = liked;
 
@@ -68,11 +61,7 @@ export default function PostCard({ post, isowner }) {
 
     try {
 
-      // =====================================
-      // BACKEND API CALL
-      // =====================================
 
-      // await likePost(post.post_id);
       const userdata = new FormData();
       userdata.append("post_id", post.post_id);
       // userdata.append("username",userInfo.username);
@@ -88,9 +77,6 @@ export default function PostCard({ post, isowner }) {
 
       console.log(err);
 
-      // =====================================
-      // ROLLBACK IF FAILED
-      // =====================================
 
       setLiked(previousLiked);
 
@@ -101,13 +87,10 @@ export default function PostCard({ post, isowner }) {
       );
     }
   };
-  // --- Testing with your exact timestamp ---
-  // const sampleData = "2026-05-19T19:24:08.770Z"; 
-  // console.log(formatRelativeTime(sampleData));
 
   return (
     <article className="bg-white border border-slate-100 rounded-2xl p-4 sm:p-5 shadow-sm hover:border-slate-200 transition-all space-y-3 mb-4">
-      {/* Header Metadata */}
+      
       <div className="flex items-center justify-between">
         {/* <button onClick={() => { console.log("clicked");console.log(post.creator_name); setNotOwner(post.creator_name); setopenProfile(true) }}> */}
           <div className="flex items-center gap-3">
@@ -139,7 +122,6 @@ export default function PostCard({ post, isowner }) {
         } */}
       </div>
 
-      {/* Main Core Typography */}
       <div>
         <h2 className="text-base sm:text-lg font-extrabold text-slate-800 tracking-tight leading-snug">
           {post.title}
@@ -149,23 +131,21 @@ export default function PostCard({ post, isowner }) {
         </p>
         <p className="text-xs text-slate-400 font-medium mt-6">
           {/* {post.addons.length} {post.addons.length === 1 ? 'media item' : 'media items'} */}
-          {/* sports */}
+         
           {
             // console.log(post)
             post.tags.map((tag, index) => (
               <span key={index} className="inline-block bg-slate-100 text-slate-500 text-xs font-medium px-2 py-0.5 rounded-full mr-2">
                 #{tag}
-                {/* hello */}
+                
               </span>
             ))
           }
         </p>
       </div>
 
-      {/* Interactive Media Carousel Renderer */}
       <MediaCarousel addons={post.addons} />
 
-      {/* Social Actions Panel */}
       <div className="flex items-center gap-6 pt-2 border-t border-slate-50 text-slate-500 text-xs sm:text-sm font-semibold">
         {/* <button className="flex items-center gap-1.5 hover:text-pink-600 transition-colors group">
           <div className="p-1.5 rounded-lg group-hover:bg-pink-50">

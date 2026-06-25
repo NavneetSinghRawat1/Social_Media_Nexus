@@ -16,7 +16,7 @@ app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ limit: '500mb', extended: true }));
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:5173', // Your exact React app URL (Do NOT use '*')
+  origin: 'http://localhost:5173', 
   credentials: true                // Allows the backend to receive the cookie
 }));
 app.use("/u",authRoutes);

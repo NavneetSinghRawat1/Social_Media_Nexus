@@ -13,7 +13,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login submission logic here
+    
     // console.log(e);
     const credentials = { username, password };
     await userService.login(credentials)
@@ -28,7 +28,7 @@ export default function LoginPage() {
         setUserInfo({ username: response.user, picture: response.picture });
         // console.log("Login successful, user data:", response);
         navigate("/home");
-        // Handle successful login
+        
       })
       .catch(error => {
         // username="";
@@ -36,7 +36,7 @@ export default function LoginPage() {
         setUsername("");
         setPassword("");
         console.error('Login error:', error);
-        // Handle login error
+        
       });
     // console.log('Logging in with:', { username, password });
   };

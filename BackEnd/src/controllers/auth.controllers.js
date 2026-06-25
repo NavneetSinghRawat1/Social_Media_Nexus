@@ -5,7 +5,7 @@ const {uploadFile, deletePic}=require("../services/storage.services")
 require('dotenv').config();
 
 async function registerUser(req,res) {
-    // console.log("hello ehlo kek");
+    
     const token=req.cookies.token
     if (token){
         res.status(401).json({
@@ -88,14 +88,14 @@ async function updateUser(req, res) {
         let updateFields = [];
         let queryParams = [];
         let count = 1;
-        // 1. Handle Password Hashing (if provided)
+        
         if (u_password) {
             const hash = await bcrypt.hash(u_password, 10);
             updateFields.push(`password = $${count++}`);
             queryParams.push(hash);
         }
 
-        // 2. Handle Image Upload (if provided)
+        
         if (profile_photo) {
             const result = await uploadFile(profile_photo.buffer.toString('base64'), username);
             
@@ -111,18 +111,18 @@ async function updateUser(req, res) {
             queryParams.push(result.fileId);
         }
 
-        // 3. Handle Bio (if provided)
-        if (bio !== undefined) { // allows for empty string bio but skips if undefined
+        
+        if (bio !== undefined) { 
             updateFields.push(`bio = $${count++}`);
             queryParams.push(bio);
         }
 
-        // If no fields were provided to update
+        
         if (updateFields.length === 0) {
             return res.status(400).json({ message: "No data provided to update." });
         }
 
-        // 4. Add username as the final parameter for the WHERE clause
+        
         queryParams.push(username);
         const query = `UPDATE users SET ${updateFields.join(', ')} WHERE username = $${count} RETURNING *`;
 

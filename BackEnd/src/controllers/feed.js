@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
             const limit = parseInt(req.query.limit) || 15;
             const cursorScore = req.query.cursorScore ? parseFloat(req.query.cursorScore) : null;
             
-            // FIXED: Do not use parseInt. Treat the UUID cursor ID as a string.
+            
             const cursorPostId = req.query.cursorPostId || null;
 
             let query = `
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
 
             const values = [limit];
 
-            // FIXED: Cast UUID column to TEXT so string comparison operators (<, >) work seamlessly
+            
             if (cursorScore !== null && cursorPostId !== null) {
                 query += ` WHERE 
                     ((EXTRACT(EPOCH FROM posts.created_at) * 0.0000001) < $2)
@@ -40,10 +40,9 @@ router.get("/", async (req, res) => {
                     ((EXTRACT(EPOCH FROM posts.created_at) * 0.0000001) = $2 AND posts.post_id::text < $3)
                 `;
                 values.push(cursorScore);
-                values.push(cursorPostId); // Will safely accept the UUID string now
+                values.push(cursorPostId); 
             }
 
-            // FIXED: Match the ORDER BY clause with text-casting for consistency
             query += ` ORDER BY (EXTRACT(EPOCH FROM posts.created_at) * 0.0000001) DESC, posts.post_id::text DESC LIMIT $1`;
 
             const result = await pool.query(query, values);
@@ -54,7 +53,7 @@ router.get("/", async (req, res) => {
                 const lastPost = posts[posts.length - 1];
                 nextCursor = {
                     cursorScore: lastPost.final_score,
-                    cursorPostId: lastPost.post_id, // Safely passes back your UUID string
+                    cursorPostId: lastPost.post_id, 
                 };
             }
 

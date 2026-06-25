@@ -24,9 +24,6 @@ export default function CreatePostModal({
     const navigate = useNavigate();
     if (!isOpen) return null;
 
-    // =========================================
-    // FILE CHANGE
-    // =========================================
 
     const handleFileChange = (e) => {
 
@@ -50,9 +47,6 @@ export default function CreatePostModal({
         setPreviewFiles(prev => [...prev, ...previews]);
     };
 
-    // =========================================
-    // REMOVE FILE
-    // =========================================
 
     const removeFile = (index) => {
 
@@ -64,10 +58,6 @@ export default function CreatePostModal({
             prev.filter((_, i) => i !== index)
         );
     };
-
-    // =========================================
-    // SUBMIT
-    // =========================================
 
     const handleSubmit = async (e) => {
 
@@ -92,25 +82,13 @@ export default function CreatePostModal({
 
             setLoading(true);
 
-            // =====================================
-            // TAG ARRAY
-            // =====================================
 
             // const tagArray = tags
             //     .split(",")
             //     .map(tag => tag.trim())
             //     .filter(tag => tag.length > 0);
 
-            // =====================================
-            // IMAGEKIT UPLOAD LOGIC HERE
-            // =====================================
-
-            // upload addons to imagekit
-            // get urls
-
-            // =====================================
-            // FINAL DATA
-            // =====================================
+           
 
             // const postData = {
             //     title,
@@ -129,7 +107,6 @@ export default function CreatePostModal({
                 formDataToSend.append('addons', file);
             });
 
-            // await axios.post(...)
             const data=await postService.create_post(formDataToSend);
             console.log(data);
             // for (let pair of formDataToSend.entries()) {
@@ -137,9 +114,6 @@ export default function CreatePostModal({
             // }
             onClose();
             // window.location.reload();
-            // =====================================
-            // CLEAR FORM
-            // =====================================
 
             setTitle("");
             setContent("");
@@ -164,7 +138,6 @@ export default function CreatePostModal({
             await postService.chk_token();
             // const user = await postService.user_info();
             
-            // State updates are batched together
             // setProfile(user.user);
             // setNoOfPosts(user.no_of_posts);
             // setNoOfCreatedCommunities(user.no_of_created_comm);
@@ -183,10 +156,8 @@ export default function CreatePostModal({
 
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
 
-            {/* MODAL */}
             <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
 
-                {/* HEADER */}
                 <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100">
 
                     <div>
@@ -216,13 +187,11 @@ export default function CreatePostModal({
                     </button>
                 </div>
 
-                {/* FORM */}
                 <form
                     onSubmit={handleSubmit}
                     className="p-4 space-y-4 max-h-[85vh] overflow-y-auto"
                 >
 
-                    {/* TITLE */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -249,7 +218,6 @@ export default function CreatePostModal({
                         />
                     </div>
 
-                    {/* CONTENT */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -277,7 +245,6 @@ export default function CreatePostModal({
                         />
                     </div>
 
-                    {/* TAGS */}
                     <div>
 
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
@@ -308,7 +275,6 @@ export default function CreatePostModal({
                         </p>
                     </div>
 
-                    {/* ADDONS */}
                     <div>
 
                         <div className="flex items-center justify-between mb-2">
@@ -358,7 +324,6 @@ export default function CreatePostModal({
                         </label>
                     </div>
 
-                    {/* PREVIEW */}
                     {
                         previewFiles.length > 0 && (
 
@@ -414,8 +379,6 @@ export default function CreatePostModal({
                             </div>
                         )
                     }
-
-                    {/* FOOTER */}
                     <div className="flex justify-end gap-3 pt-2">
 
                         <button
