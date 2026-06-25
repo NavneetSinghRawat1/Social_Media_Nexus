@@ -783,7 +783,7 @@ async function userInfo(req,res) {
 }
 async function notuserInfo(req,res) {
     try {
-        // console.log("jhsdkj asdj");
+        
         // const token = req.cookies.token;
         // const decoded = jwt.verify(token, process.env.JWT_SECRET)
         // req.user_sending_data=decoded
